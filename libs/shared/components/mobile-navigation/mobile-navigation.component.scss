@@ -1,0 +1,51 @@
+:host {
+  display: block;
+}
+
+.mobile-navigation {
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    
+    &-icon {
+      width: var(--spacing-8);
+      height: var(--spacing-8);
+      background: linear-gradient(to bottom right, var(--color-blue-500), var(--color-blue-600));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      span {
+        color: var(--color-white);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-lg);
+      }
+    }
+    
+    &-text {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-gray-900);
+    }
+  }
+  
+  &__links {
+    display: flex;
+    gap: var(--spacing-6);
+    
+    span {
+      font-size: var(--font-size-sm);
+      
+      &.active {
+        color: var(--color-blue-600);
+        font-weight: var(--font-weight-semibold);
+      }
+      
+      &:not(.active) {
+        color: var(--color-gray-600);
+      }
+    }
+  }
+}

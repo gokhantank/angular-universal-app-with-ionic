@@ -1,0 +1,92 @@
+@if (visible()) {
+  <div class="modal" (click)="onClose()">
+    <div class="modal__overlay"></div>
+    <div class="modal__content" (click)="$event.stopPropagation()">
+      <!-- Header -->
+      <div class="modal__header">
+        <div class="modal__header-tabs">
+          @for (tab of TABS; track tab) {
+            <button
+              (click)="activeTab.set(tab)"
+              [class.active]="activeTab() === tab"
+              class="modal__header-tab"
+            >
+              {{ tab }}
+            </button>
+          }
+        </div>
+        <button
+          (click)="onClose()"
+          class="modal__header-close"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="modal__body">
+        <!-- Sub-tabs for media -->
+        <div class="modal__section">
+          <div class="modal__section-label">Media</div>
+          <div class="modal__section-icons">
+            @for (media of MEDIA_ICONS; track media.id) {
+              <button
+                (click)="activeMedia.set(media.id)"
+                [class.active]="activeMedia() === media.id"
+                class="modal__section-icon"
+              >
+                {{ media.icon }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Sub-tabs for shoutout type -->
+        <div class="modal__section">
+          <div class="modal__section-buttons">
+            @for (tab of ['Media', 'Shoutout', 'Poll', 'Suggest', 'Files']; track tab) {
+              <button class="modal__section-button">
+                {{ tab }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Search users -->
+        <input
+          type="text"
+          class="modal__input"
+          placeholder="Search for users here"
+          [ngModel]="selectedUser()"
+          (ngModelChange)="selectedUser.set($event)"
+        />
+
+        <!-- Company values dropdown -->
+        <button class="modal__button">
+          Select related company values
+        </button>
+
+        <!-- Impact text area -->
+        <textarea
+          class="modal__textarea"
+          placeholder="What was the impact (in a few sentences)?"
+          rows="4"
+          [ngModel]="impact()"
+          (ngModelChange)="impact.set($event)"
+        ></textarea>
+
+        <!-- User/Team selector -->
+        <button class="modal__button">
+          Select a user/team first
+        </button>
+
+        <!-- Submit button -->
+        <button
+          class="modal__submit"
+          (click)="handleSubmit()"
+        >
+          Give shoutout
+        </button>
+      </div>
+    </div>
+  </div>
+}

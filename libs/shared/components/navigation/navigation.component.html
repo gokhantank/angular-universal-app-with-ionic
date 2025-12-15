@@ -1,0 +1,28 @@
+<nav class="navigation">
+  <div class="navigation__container">
+    <!-- Logo Section -->
+    <div class="navigation__logo">
+      <div class="navigation__logo-icon">
+        <span>h</span>
+      </div>
+      <span class="navigation__logo-text">heelix</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="navigation__links">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Dashboard
+      </a>
+      <a
+        routerLink="/factor-analysis"
+        routerLinkActive="active"
+      >
+        Factor analysis
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,51 @@
+<div class="factor-analysis">
+  <div class="factor-analysis__container">
+    <!-- Header -->
+    <h1 class="factor-analysis__header">Factor analysis</h1>
+
+    <!-- Filters -->
+    <div class="factor-analysis__filters">
+      <div class="factor-analysis__filters-dropdown team-dropdown-container">
+        <button
+          class="factor-analysis__filters-dropdown-button"
+          (click)="showTeamDropdown.set(!showTeamDropdown())"
+        >
+          <span>{{ selectedTeam() }} ▼</span>
+        </button>
+        @if (showTeamDropdown()) {
+          <div class="factor-analysis__filters-dropdown-menu">
+            @for (team of TEAMS; track team) {
+              <button (click)="selectTeam(team)">
+                <span>{{ team }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+      <button class="factor-analysis__filters-period">
+        <span>Last 30 days ▼</span>
+      </button>
+    </div>
+
+    <!-- Factor Grid -->
+    <div class="factor-analysis__grid">
+      @for (factor of factors(); track factor.name) {
+        <div class="factor-analysis__grid-item">
+          <div
+            class="factor-analysis__grid-item-bar"
+            [style.backgroundColor]="factor.color"
+          ></div>
+          <div class="factor-analysis__grid-item-name">{{ factor.name }}</div>
+          <div class="factor-analysis__grid-item-value">{{ factor.value }}%</div>
+          <div class="factor-analysis__grid-item-progress">
+            <div
+              class="factor-analysis__grid-item-progress-fill"
+              [style.width.%]="factor.value"
+              [style.backgroundColor]="factor.color"
+            ></div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

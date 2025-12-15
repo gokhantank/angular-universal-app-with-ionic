@@ -1,0 +1,20 @@
+<div class="progress-bar">
+  <div class="progress-bar__header">
+    <span class="progress-bar__header-label">{{ label() }} (?)</span>
+  </div>
+  <div class="progress-bar__track">
+    <div
+      class="progress-bar__fill"
+      [style.--width]="normalizedValue() + '%'"
+      [style.--fill-color]="color()"
+    ></div>
+    <div
+      class="progress-bar__indicator"
+      [style.--indicator-left]="normalizedValue() + '%'"
+    ></div>
+  </div>
+  <div class="progress-bar__labels">
+    <span class="progress-bar__labels-text">-100</span>
+    <span class="progress-bar__labels-text">100</span>
+  </div>
+</div>

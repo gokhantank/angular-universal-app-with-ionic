@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div class="mobile-navigation__logo">
+        <div class="mobile-navigation__logo-icon">
+          <span>h</span>
+        </div>
+        <span class="mobile-navigation__logo-text">heelix</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/" routerDirection="root">
+        <span [class.active]="isActive('/')" class="mobile-navigation__links">
+          Dashboard
+        </span>
+      </ion-button>
+      <ion-button routerLink="/factor-analysis" routerDirection="root">
+        <span [class.active]="isActive('/factor-analysis')" class="mobile-navigation__links">
+          Factor analysis
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

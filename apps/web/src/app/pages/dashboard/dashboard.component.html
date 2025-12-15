@@ -1,0 +1,109 @@
+<div class="dashboard">
+  <div class="dashboard__container">
+    <!-- HEADER -->
+    <div class="dashboard__header">
+      <div class="dashboard__header-title">
+        <h1>Insights dashboard</h1>
+      </div>
+      <button
+        class="dashboard__header-button"
+        (click)="showTakeActionModal.set(true)"
+      >
+        Take action
+      </button>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="dashboard__filters">
+      <div class="dashboard__filters-dropdown team-dropdown-container">
+        <button
+          class="dashboard__filters-dropdown-button"
+          (click)="showTeamDropdown.set(!showTeamDropdown())"
+        >
+          <span>{{ selectedTeam() }} ▼</span>
+        </button>
+        @if (showTeamDropdown()) {
+          <div class="dashboard__filters-dropdown-menu">
+            @for (team of TEAMS; track team) {
+              <button (click)="selectTeam(team)">
+                <span>{{ team }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+      <div class="dashboard__filters-period">
+        <span>Last 30 days ▼</span>
+      </div>
+    </div>
+
+    <!-- TOP SECTION: GAUGE & CHART -->
+    <div [class]="'dashboard__top-section ' + (isLargeScreen() ? 'row' : 'column')">
+      <!-- Left: Vibe Score -->
+      <lib-card [className]="'dashboard__gauge-card'">
+        <lib-gauge [score]="teamData().vibeScore"></lib-gauge>
+      </lib-card>
+
+      <!-- Right: Score History -->
+      <lib-card [className]="'dashboard__chart ' + (isLargeScreen() ? 'dashboard__chart--large' : '')">
+        <div class="dashboard__chart-header">
+          <h2>Score history</h2>
+          <span>Last 9 months</span>
+        </div>
+        <div class="dashboard__chart-graph">
+          <div class="dashboard__chart-graph-line"></div>
+          <div class="dashboard__chart-graph-point" style="left: 10%; top: 60%;"></div>
+          <div class="dashboard__chart-graph-point" style="left: 30%; top: 40%;"></div>
+          <div class="dashboard__chart-graph-point" style="left: 50%; top: 70%;"></div>
+          <div class="dashboard__chart-graph-point" style="left: 70%; top: 30%;"></div>
+          <div class="dashboard__chart-graph-point" style="left: 90%; top: 50%;"></div>
+        </div>
+      </lib-card>
+    </div>
+
+    <!-- MIDDLE SECTION: KPIS -->
+    <div class="dashboard__kpis">
+      <div class="dashboard__kpis-item">
+        <span class="dashboard__kpis-item-emoji">☹️</span>
+        <p class="dashboard__kpis-item-text">Your overall team Vibe is</p>
+        <p class="dashboard__kpis-item-text bold">{{ teamData().overallVibe }}</p>
+      </div>
+
+      <div class="dashboard__kpis-item">
+        <div class="dashboard__kpis-item-circle yellow">
+          <span>{{ teamData().participation }}%</span>
+        </div>
+        <span class="dashboard__kpis-item-label">Participation</span>
+      </div>
+
+      <div class="dashboard__kpis-item">
+        <div class="dashboard__kpis-item-circle blue">
+          <span>{{ teamData().monthlyActiveUsers }}%</span>
+        </div>
+        <span class="dashboard__kpis-item-label">Monthly active users</span>
+      </div>
+
+      <div class="dashboard__kpis-item">
+        <div class="dashboard__kpis-item-icon">
+          <span>👥</span>
+        </div>
+        <span class="dashboard__kpis-item-link">View team details</span>
+      </div>
+    </div>
+
+    <!-- BOTTOM SECTION: METRICS -->
+    <h2 class="dashboard__metrics-title">Key performance metrics</h2>
+    <div class="dashboard__metrics-grid">
+      @for (kpi of teamData().kpiData; track kpi.label) {
+        <div [class]="'dashboard__metrics-grid-item ' + (isLargeScreen() ? 'large' : 'full')">
+          <lib-progress-bar [label]="kpi.label" [value]="kpi.value" [color]="kpi.color"></lib-progress-bar>
+        </div>
+      }
+    </div>
+  </div>
+
+  <lib-take-action-modal
+    [visible]="showTakeActionModal()"
+    (close)="showTakeActionModal.set(false)"
+  ></lib-take-action-modal>
+</div>

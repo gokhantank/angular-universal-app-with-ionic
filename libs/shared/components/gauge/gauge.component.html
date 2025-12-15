@@ -1,0 +1,16 @@
+<div class="gauge">
+  <div class="gauge__container">
+    <div
+      class="gauge__needle"
+      [style.--rotation]="normalizedRotation() + 'deg'"
+    ></div>
+  </div>
+  <div class="gauge__score">
+    <div class="gauge__score-value">{{ score() }}</div>
+    <div class="gauge__score-label">VIBE SCORE</div>
+  </div>
+  <div class="gauge__emoji">
+    <span>☹️</span>
+    <span>😃</span>
+  </div>
+</div>
