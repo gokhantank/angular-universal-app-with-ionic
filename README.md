@@ -19,13 +19,12 @@ heelix-angular-and-ionic/
 
 ## Features
 
-- **Universal Angular v21**: Latest Angular version with standalone components
+- **Universal Angular v21**: Latest Angular version with standalone components, signal and zoneless
 - **Ionic Integration**: Mobile app built with Ionic Angular
 - **Shared Library**: Reusable components and utilities shared between web and mobile
 - **Dashboard Page**: Insights dashboard with team metrics and KPIs
 - **Factor Analysis Page**: Factor analysis view with team data
 - **Navigation**: Responsive navigation component for both platforms
-- **Tailwind CSS**: Utility-first CSS framework for styling
 
 ## Getting Started
 
